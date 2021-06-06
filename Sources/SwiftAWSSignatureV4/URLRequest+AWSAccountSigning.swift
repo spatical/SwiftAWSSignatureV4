@@ -110,6 +110,9 @@ extension URLRequest {
 			return key0 == ":authority"
 				|| key0.hasPrefix("x-amz-")
 		})
+		if allHeaders[":authority"] == nil, let host:String = url?.host {
+			headerValues.append((":authority",host))
+		}
 		headerValues.sort { $0.0 < $1.0 }
 		return headerValues
 		
