@@ -107,15 +107,9 @@ extension URLRequest {
 			return (key.lowercased(), value.trimmingCharacters(in: .whitespaces))
 		}
 		headerValues = headerValues.filter({ (key0, _) -> Bool in
-			return key0 == "host"
-				|| key0 == "content-encoding"
-				|| key0 == "content-type"
-				|| key0 == "accept"
+			return key0 == ":authority"
 				|| key0.hasPrefix("x-amz-")
 		})
-		if allHeaders["Host"] == nil, let host:String = url?.host {
-			headerValues.append(("host",host))
-		}
 		headerValues.sort { $0.0 < $1.0 }
 		return headerValues
 		
