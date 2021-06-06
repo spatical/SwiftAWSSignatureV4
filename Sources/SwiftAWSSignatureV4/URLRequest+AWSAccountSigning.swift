@@ -108,7 +108,7 @@ extension URLRequest {
 		}
 		headerValues = headerValues.filter({ (key0, _) -> Bool in
 			return key0 == "host"
-				|| key0 == "content-type"
+				|| key0 == "content-encoding"
 				|| key0.hasPrefix("x-amz-")
 		})
 		if allHeaders["Host"] == nil, let host:String = url?.host {
