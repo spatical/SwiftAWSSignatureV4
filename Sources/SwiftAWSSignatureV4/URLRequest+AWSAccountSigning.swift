@@ -101,7 +101,7 @@ extension URLRequest {
 	}
 	
 	///returns sorted key-value tuples
-	func canonicalHeaders()->[(String, String)] {
+	public func canonicalHeaders()->[(String, String)] {
 		let allHeaders = allHTTPHeaderFields ?? [:]
 		var headerValues:[(String,String)] = allHeaders.map { (key, value) -> (String, String) in
 			return (key.lowercased(), value.trimmingCharacters(in: .whitespaces))
@@ -109,6 +109,8 @@ extension URLRequest {
 		headerValues = headerValues.filter({ (key0, _) -> Bool in
 			return key0 == "host"
 				|| key0 == "content-encoding"
+				|| key0 == "content-type"
+				|| key0 == "accept"
 				|| key0.hasPrefix("x-amz-")
 		})
 		if allHeaders["Host"] == nil, let host:String = url?.host {
